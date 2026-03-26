@@ -1,0 +1,17 @@
+apiVersion: 1
+
+datasources:
+  - name: SensorDB
+    type: mysql
+    access: proxy
+    url: localhost:3306
+    database: sensordb
+    user: sensoruser
+    secureJsonData:
+      password: sensor1234
+    jsonData:
+      maxOpenConns: 10
+      maxIdleConns: 10
+      connMaxLifetime: 14400
+    isDefault: true
+    editable: true

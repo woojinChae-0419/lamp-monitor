@@ -1,0 +1,21 @@
+===================================================
+  GitHub Repository 정보
+===================================================
+
+저장소 이름 : lamp-monitor
+GitHub URL  : https://github.com/woojinChae-0419/lamp-monitor
+소유자      : woojinChae-0419
+
+===================================================
+  제출 영상 목록
+===================================================
+
+[영상 1] video1_nodered.mp4
+  - 내용 : injector.py 실행 → Node-RED 대시보드 실시간 모니터링
+  - URL   : http://localhost:1880/ui
+
+[영상 2] video2_grafana.mp4
+  - 내용 : injector.py 실행 → Grafana 대시보드 실시간 모니터링
+  - URL   : http://localhost:3000
+
+===================================================
