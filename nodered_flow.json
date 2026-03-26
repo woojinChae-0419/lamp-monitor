@@ -10,7 +10,13 @@
     "type": "inject",
     "z": "tab_sensor",
     "name": "2초마다 폴링",
-    "props": [{"p": "payload"}],
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str",
+        "v": "SELECT * FROM sensor_data ORDER BY id DESC LIMIT 1"
+      }
+    ],
     "repeat": "2",
     "crontab": "",
     "once": true,
@@ -19,7 +25,11 @@
     "payloadType": "date",
     "x": 130,
     "y": 120,
-    "wires": [["query_mysql"]]
+    "wires": [
+      [
+        "query_mysql"
+      ]
+    ]
   },
   {
     "id": "query_mysql",
@@ -31,7 +41,12 @@
     "querytype": "str",
     "x": 340,
     "y": 120,
-    "wires": [["split_rows"]]
+    "wires": [
+      [
+        "split_rows"
+      ]
+    ],
+    "mydb": "mysql_config"
   },
   {
     "id": "split_rows",
@@ -42,7 +57,11 @@
     "spltType": "str",
     "x": 540,
     "y": 120,
-    "wires": [["extract_fields"]]
+    "wires": [
+      [
+        "extract_fields"
+      ]
+    ]
   },
   {
     "id": "extract_fields",
@@ -53,7 +72,15 @@
     "outputs": 1,
     "x": 740,
     "y": 120,
-    "wires": [["gauge_temp","gauge_hum","gauge_pres","gauge_co2","chart_temp"]]
+    "wires": [
+      [
+        "gauge_temp",
+        "gauge_hum",
+        "gauge_pres",
+        "gauge_co2",
+        "chart_temp"
+      ]
+    ]
   },
   {
     "id": "gauge_temp",
@@ -70,7 +97,8 @@
     "seg2": 35,
     "x": 980,
     "y": 60,
-    "wires": []
+    "wires": [],
+    "value": "{{msg.payload}}"
   },
   {
     "id": "gauge_hum",
@@ -87,7 +115,8 @@
     "seg2": 70,
     "x": 980,
     "y": 120,
-    "wires": []
+    "wires": [],
+    "value": "{{msg.payload}}"
   },
   {
     "id": "gauge_pres",
@@ -104,7 +133,8 @@
     "seg2": 1020,
     "x": 980,
     "y": 180,
-    "wires": []
+    "wires": [],
+    "value": "{{msg.payload}}"
   },
   {
     "id": "gauge_co2",
@@ -121,7 +151,8 @@
     "seg2": 1200,
     "x": 980,
     "y": 240,
-    "wires": []
+    "wires": [],
+    "value": "{{msg.payload}}"
   },
   {
     "id": "chart_temp",
@@ -141,7 +172,10 @@
     "ymax": "50",
     "x": 980,
     "y": 300,
-    "wires": [[],[]]
+    "wires": [
+      [],
+      []
+    ]
   },
   {
     "id": "mysql_config",
@@ -151,7 +185,9 @@
     "port": "3306",
     "db": "sensordb",
     "tz": "",
-    "charset": "UTF8MB4_GENERAL_CI"
+    "charset": "UTF8MB4_GENERAL_CI",
+    "user": "sensoruser",
+    "password": "sensor1234"
   },
   {
     "id": "group_main",
